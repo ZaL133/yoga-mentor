@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yoga mentor</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="icon" href="favicon.png">
+  <meta name="theme-color" content="#bac3b6">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="fade" id="b">
+    <div class="container">
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">Yoga mentor</span>
+            </div>
+        </nav>
+
+        <div style="max-width: 50vw; margin:auto; ">
+        
+            <!-- runner -->
+            <button class="btn btn-info" id="get-yoga" style="margin-top: 30px; max-width: 200px;">Get Yogas</button>
+
+            <!-- results -->
+            <ol id="results" style="max-width: 500px;"></ol>
+        </div>
+    </div>
+  </div>
+  <style>
+    .row { 
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    #results { 
+        max-width: 500px;
+        display: block;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 55px;
+        min-width: 25vw;
+        min-height: 25vw;
+        margin-top: 10vh;
+        position: relative;
+    }
+
+    .result {
+        color: black;
+        animation: example;        
+        animation-name: example;
+        animation-duration: 4s;
+    }
+
+
+@keyframes example {
+  0%   {background-color:red; color: red; left:0px; top:0px;}
+  25%  {background-color:blue; color: blue; left:200px; top:0px;}
+  50%  {background-color:green; color: green; left:200px; top:200px;}
+  75%  {background-color:orange; color: orange; left:0px; top:200px;}
+  100% {background-color:white; color: black; left:0px; top:0px;}
+}
+  </style>
+
+  <script type="text/javascript">
+
+    const howMany = 3;
+    window.onload = function(){
+        // fade in 
+        document.getElementById("b").classList.add("show");
+    const yogaPoses     = poses.split('\n');
+    const numberOfPoses = yogaPoses.length;
+
+    document.getElementById("get-yoga").onclick = (el) => {
+        let self = el.target;
+        let resultsElement = document.getElementById("results");
+        self.setAttribute("disabled", true);
+
+        // remove the shown class
+        resultsElement.innerHTML = "";
+
+        return new Promise((x, y) => {
+            setTimeout(() => {
+                let resultsElement = document.getElementById("results");
+
+                const selectedPoses = [];
+                for(var i = 0; i < howMany; i++) {
+                    var pose = parseInt((Math.random(i) * 100000 ) % numberOfPoses);
+                    selectedPoses.push(yogaPoses[pose]);
+                }
+
+                var poseHtmls = Array.from(selectedPoses.map((x) => `<li class='result'>${x}</li>`));
+                
+                for(var i = 0; i < poseHtmls.length; i++) {
+                    var poseHtml = poseHtmls[i];
+                    setTimeout((ph) => {
+                        resultsElement.insertAdjacentHTML("beforeend", ph);
+                    }, i * 4000, poseHtml)
+
+                    
+                }
+
+            }, 50);
+        }).then(() => {
+            self.removeAttribute("disabled");
+        })
+        
+    }
+  };
+
+    const poses = `Archer Pose
+Arrow Lunge
+Baby Grasshopper Pose
+Balancing Bound Angle Pose
+Balancing Butterfly Pose
+Balancing Stick Pose
+Bharadvaja's Twist
+Big Toe Pose
+Bird of Paradise Pose
+Boat Pose
+Bound Inverted Tortoise Pose
+Bound Revolved Squatting Toe Balance
+Bow Pose
+Bridge Pose
+Butterfly Pose
+Camel Pose
+Cat Pose
+Chair Pose
+Child's Pose
+Circle Pose
+Cobra Pose
+Corpse Pose
+Cow Face Pose
+Cow Pose
+Crab Pose
+Crane Pose
+Crescent Lunge Pose
+Crescent Moon Pose
+Crow Pose
+Dancer's Pose
+Dancing Shiva Pose
+Dolphin Plank Pose
+Dolphin Pose
+Double Big Toe Pose
+Double Pigeon Pose
+Dove Pose
+Downward-Facing Dog Pose
+Downward-Facing Pigeon Pose
+Dragonfly Pose
+Eagle Pose
+Easy Pose
+Eight Angle Pose
+Elbow Stand
+Equestrian Pose
+Extended Hand-to-Big Toe Pose
+Extended Puppy Pose
+Extended Side Angle Pose
+Extended Triangle Pose
+Eye of the Needle Pose
+Fetal Pose
+Firefly Pose
+Fish Pose
+Floating Stick Pose
+Flying Lizard Pose
+Flying Pigeon Pose
+Forearm Stand
+Four-footed Posture
+Frog Pose
+Garland Pose
+Gate Pose
+Gracious Pose
+Half Boat Pose
+Half Camel Pose
+Half Cobra Pose
+Half Frog Pose
+Half Happy Baby Pose
+Half Headstand
+Half Lord of the Fishes Pose
+Half Moon Pose
+Half Splits Pose
+Half Wheel Pose
+Half Wind Relieving Pose
+Handstand
+Handstand Split Pose
+Happy Baby Pose
+Hare Pose
+Head-to-Knee Pose A
+Hero Pose
+Heron Pose
+High Lunge Pose
+Holy Fig Tree Pose
+Knees-Chest-Chin Pose
+Knees-to-Chest Pose
+Leg Cradle Pose
+Legs-Up-the-Wall Pose
+Lion Pose
+Lizard Pose
+Locust Pose
+Lord of the Fishes Pose
+Lotus Peacock Pose
+Lotus Pose
+Low Lunge Pose
+Low Plank Pose
+Marichi's Pose
+Marichi's Pose B
+Marichi's Pose C
+Marichi's Pose D
+Mermaid Pose
+Monkey Pose
+Mountain Posed
+Noose Pose
+One-Legged King Pigeon Pose A
+One-Legged King Pigeon Pose B
+One-Legged Stretched Out Scorpion Pose
+Peaceful Warrior Pose
+Peacock Pose
+Pelican Pose
+Pigeon Pose
+Plank Pose
+Plow Pose
+Pose Dedicated to Sage Koundinya A
+Pose Dedicated to Sage Koundinya B
+Prayer Twist
+Pyramid Pose
+Rabbit Pose
+Ragdoll Pose
+Reclining Big Toe Pose
+Reclining Bound Angle Pose
+Reclining Hero Pose
+Revolved Chair Pose
+Revolved Crescent Lunge
+Revolved Downward-Facing Dog Pose
+Revolved Easy Pose
+Revolved Half Moon Pose
+Revolved Head-to-Knee Pose
+Revolved Pigeon Pose
+Revolved Side Angle Pose
+Revolved Triangle Pose
+Scorpion Pose
+Seated Cat Cow Pose
+Seated Forward Bend Pose
+Shoulder Stand Pose
+Side Crow Pose
+Side Plank Pose
+Simple Spinal Twist Pose
+Snake Pose
+Sphinx Pose
+Staff Pose
+Standing Cow Face Pose
+Standing Forward Bend
+Standing Head to Knee Pose
+Standing Spinal Twist Pose B
+Star Pose
+Superman Pose
+Supine Spinal Twist Pose
+Supported Headstand Pose
+Supported Side Plank Pose
+Swaying Palm Tree Pose
+Teardrop Bow Pose
+Thread the Needle Pose
+Thunderbolt Pose
+Tortoise Pose
+Tree Pose
+Upward Plank Pose
+Upward-Facing Dog Pose
+Upward-Facing Two-Legged Staff Pose
+Warrior One Forward Bend
+Warrior One Pose
+Warrior Three Pose
+Warrior Two Pose
+Wheel Pose
+Wide-Legged Forward Bend
+Wild Thing Pose
+Wind Relieving Pose
+`;
+  </script>
+</body>
+</html>
